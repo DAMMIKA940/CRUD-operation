@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscriptions</title>
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/styles.css}" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"> <img th:src="@{/assets/images/logo.jpg}" width="40px" height="40px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/customers">Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/subscriptions">Subscriptions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/loans">Loans</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="content">
+    <h1>Subscriptions</h1>
+    <div class="d-flex flex-row-reverse px-4 py-2">
+        <button onclick="window.location.href='/subscriptions/add-form'" type="button" class="btn btn-primary">
+            ADD
+        </button>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="fw-bold">Subscription ID</th>
+                <th class="fw-bold">Customer</th>
+                <th class="fw-bold">Loans</th>
+                <th class="fw-bold">Monthly Fee</th>
+                <th class="fw-bold">Status</th>
+                <th class="fw-bold">Edit</th>
+                <th class="fw-bold">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="subscription : ${listSubscriptions}">
+                <td th:text="${subscription.id}"></td>
+                <td th:text="${subscription.getCustomer().getFirstName()}+' '+${subscription.getCustomer().getLastName()}"></td>
+                <td th:text="${subscription.getLoan().getLoanName()}"></td>
+                <td th:text="${subscription.getLoan().getMonthlyFee()}"></td>
+                <td><span th:class="${subscription.isActive()} ? 'badge bg-primary': 'badge bg-danger'" th:text="${subscription.isActive()} ? 'Active': 'Deactivated'"></span></td>
+                <td><a th:href="@{'/subscriptions/edit-form/'+${subscription.id}}" class="btn btn-success">Edit</a></td>
+                <form th:action="@{'/subscriptions/delete/'+${subscription.id}}" th:method="delete" >
+                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- MDB -->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+></script>
+
+</body>
+</html>

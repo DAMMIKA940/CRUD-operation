@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/styles.css}" />
+
+</head>
+<body>
+
+<div class="row py-5 px-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card border border-primary">
+            <div class="card-body">
+                <h1 class="text-center">Add Customer</h1>
+                <form action="#" th:action="@{/customers/add}" th:object="${customer}" th:method="post">
+                    <div>
+                        <label class="form-label" for="firstName"><b>First Name</b></label>
+                        <input type="text" id="firstName" class="form-control" th:field="*{firstName}" required/>
+
+                    </div>
+                    <div>
+                        <label class="form-label" for="lastName"><b>Last Name</b></label>
+                        <input type="text" id="lastName" class="form-control" th:field="*{lastName}" required/>
+
+                    </div>
+                    <div>
+                        <label class="form-label" for="nic"><b>NIC</b></label>
+                        <input type="text" id="nic" class="form-control" th:field="*{nic}" required/>
+
+                    </div>
+                    <div>
+                        <label class="form-label" for="email"><b>Email</b></label>
+                        <input type="email" id="email" class="form-control" th:field="*{email}" required/>
+
+                    </div>
+                    <div>
+
+                        <label class="form-label" for="phone"><b>Phone Number</b></label>
+                        <input type="text" id="phone" class="form-control" th:field="*{phone}" required/>
+                    </div>
+                    <br>
+                    <div class="d-flex flex-row-reverse">
+                        <button type="submit" class="btn btn-primary">Add Customer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+></script>
+</body>
+</html>

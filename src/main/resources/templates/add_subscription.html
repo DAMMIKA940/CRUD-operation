@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Subscription</title>
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/styles.css}" />
+
+</head>
+<body>
+
+<div class="row py-5 px-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card border border-primary">
+            <div class="card-body">
+                <h1 class="text-center">Add Subscription</h1>
+                <form action="#" th:action="@{/subscriptions/add}" th:object="${subscription}" th:method="post">
+                    <div class="form-group mb-3">
+                        <label for="customerId">Customer</label>
+                        <select class="form-control" id="customerId" th:field="*{customer}">
+
+                            <option th:each="customer : ${listCustomers}" th:value="${customer.id}" th:text="${customer.id}+' '+${customer.firstName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="loanId">Loans</label>
+                        <select class="form-control" id="loanId" th:field="*{loan}">
+
+                            <option th:each="p : ${listLoans}" th:value="${p.id}" th:text="${p.id}+' '+${p.loanName}"></option>
+                        </select>
+                    </div>
+                    <div class="d-flex flex-row-reverse">
+                        <button type="submit" class="btn btn-primary">Add Subscription</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+></script>
+</body>
+</html>
